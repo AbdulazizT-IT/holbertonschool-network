@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+echo "Active Internet connections (only servers)"
+ss -tulpen
+
+echo ""
+echo "Active UNIX domain sockets (only servers)"
+ss -lxpen
