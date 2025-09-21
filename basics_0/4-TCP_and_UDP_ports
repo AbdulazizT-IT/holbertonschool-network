@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-
+# Display all listening TCP and UDP sockets with PID and program name
 echo "Active Internet connections (only servers)"
 ss -tulpen
 
-echo ""
+# Display all listening UNIX domain sockets with PID and program name
+echo
 echo "Active UNIX domain sockets (only servers)"
 ss -lxpen
