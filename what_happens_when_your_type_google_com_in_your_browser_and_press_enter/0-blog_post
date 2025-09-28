@@ -1,0 +1,72 @@
+What Happens When You Type https://www.google.com in Your Browser and Press Enter
+This article explains the complete journey of your request — from your browser to Google’s servers — touching on key technologies that make the modern web work.
+1. DNS Request: Translating Domain to IP
+When you type https://www.google.com and hit Enter, the browser first needs to convert that domain name into an IP address — because the internet works using IP addresses.
+To do this, your device performs a DNS (Domain Name System) lookup. Here's how:
+The browser checks its internal cache.
+If not found, it asks the OS, which may check its own cache.
+If still not found, the OS queries a DNS resolver (usually from your ISP).
+The resolver checks root DNS servers, TLD servers (for .com), and then the authoritative DNS server for google.com.
+It finally gets back an IP address like 142.250.190.36.
+2. Establishing a TCP/IP Connection
+Once the IP address is known, your device uses the TCP/IP stack to initiate a connection to Google's server.
+The browser initiates a TCP 3-way handshake:
+Sends a SYN (synchronize) packet.
+Receives a SYN-ACK from Google’s server.
+Sends an ACK (acknowledge) to complete the handshake.
+This happens over port 443, because it's an HTTPS connection.
+3. Firewall: Checking Traffic Rules
+As the connection is being made, it passes through one or more firewalls:
+Your operating system might have a local firewall (e.g., Windows Defender).
+Your router or network may have a firewall.
+Google’s data center also uses firewalls.
+Each firewall checks whether to allow or block the traffic based on security rules.
+4. HTTPS / SSL / TLS: Secure Communication
+Since the URL starts with https://, your browser establishes a secure connection using TLS (SSL is the older term).
+This includes:
+Exchanging SSL certificates.
+Verifying the server is really Google (checking certificate authenticity).
+Generating a shared encryption key using asymmetric encryption (e.g., RSA or ECDSA).
+Switching to symmetric encryption (faster) for the rest of the session.
+Now, all data exchanged is encrypted — keeping your connection private and secure.
+5. Load Balancer: Distributing the Traffic
+Once the connection reaches Google’s infrastructure, it goes through a load balancer.
+Why?
+Google runs thousands of servers.
+The load balancer decides which server is available and closest to you.
+It forwards your request to the best one for optimal performance.
+6. Web Server: Handling the Request
+The request arrives at a web server — software like Google's custom HTTP server.
+This server:
+Parses the HTTP GET request from your browser.
+Checks if the request is valid and routes it to the correct part of the backend.
+7. Application Server: Generating the Response
+Next, the web server might forward the request to an application server.
+This server:
+Runs backend code (e.g., search algorithms, AI ranking, etc.).
+Validates your query.
+Communicates with databases or other services as needed.
+8. Database: Accessing the Data
+If your request involves data — for example, searching for "OpenAI" — the application server queries a database.
+Google’s databases are massive and distributed globally.
+They return the most relevant results based on your query.
+9. Sending the Response Back
+Once the application server gets the results:
+It sends a response (usually in HTML, maybe with JavaScript, CSS, or JSON) to the web server.
+The web server sends it back to your browser over the secure TCP connection.
+10. Rendering the Page
+Your browser receives the HTML and:
+Parses the DOM.
+Loads external resources (images, scripts, styles).
+Executes JavaScript.
+Finally, renders the visible Google Search page.
+✅ Conclusion
+What seems like a simple action — typing a URL and hitting Enter — actually involves:
+DNS resolution
+Secure encrypted communication
+Complex backend systems
+Load balancing
+Application logic
+Database queries
+All of this happens in milliseconds.
+Understanding these steps gives you insight into how the internet works — and what powers the seamless user experience we often take for granted.
